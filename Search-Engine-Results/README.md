@@ -31,26 +31,29 @@ Search-Engine-Results/
 ├── Summary of Results.txt
 └── readme
 ```
-
----
+## 🧠 Source Code Structure
+The `src` folder contains all core scripts for data collection, parsing, and evaluation. 
+- `yahoo_client.py` fetches Yahoo search results
+- `parser.py` extracts and cleans URLs, and
+- `generate_results.py` merges data into a unified JSON.
+- Evaluation scripts (`evaluate_new.py`, `evaluate_rerank.py`) compute overlap and ranking metrics, while `main.py` orchestrates the entire workflow end-to-end.
 
 ## 🚀 How to Run
-1. Create and activate a virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/Scripts/activate
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Run the main analysis script (inside `src/`):
-   ```bash
-   python compare_results.py
-   ```
-4. View the output reports in `/results` and `/output`.
+- Create and activate a virtual environment:  
+  `python -m venv .venv`  
+  `source .venv/Scripts/activate` (Windows) or `source .venv/bin/activate` (macOS/Linux)
+- Install dependencies:  
+  `pip install -r requirements.txt`
+- Fetch Yahoo search results for all queries:  
+  `python src/main.py`
+- Parse and generate combined JSON output:  
+  `python src/generate_results.py`
+- Evaluate overlap and ranking correlation:  
+  `python src/evaluate_new.py`  
+  *(Optionally re-run with `evaluate_rerank.py` for reranked data)*
+- View summarized outputs (overlap %, ρ, etc.) in `/results/`  
+  — includes `results.csv`, `summary.json`, and `Summary of Results.txt`
 
----
 
 ## 📈 Outputs
 - **Average overlap:** 11.8% — fewer than 1.2 common results per query.  
