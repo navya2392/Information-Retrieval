@@ -1,7 +1,7 @@
 # Search Engine Results Comparison
 
 ## 📌 Overview
-This Python-based project compares **Google** and **Bing** search results for a set of 100 predefined queries.  
+This Python-based project compares **Google** and **Yahoo** search results for a set of 100 predefined queries.  
 It analyzes the **ranking overlap**, **Spearman correlation**, and other metrics to measure search engine similarity.
 ---
 
