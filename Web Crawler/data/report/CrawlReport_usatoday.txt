@@ -1,0 +1,44 @@
+Name: Navya Bhat
+USC ID: 5673980946
+News site crawled: usatoday.com
+Number of threads: 7
+
+Fetch Statistics:
+==================
+# fetches attempted: 10000
+# fetches succeeded: 9795
+# fetches failed or aborted: 205
+
+Outgoing URLs:
+==============
+Total URLs extracted: 2080427
+# unique URLs extracted: 1098563
+# unique URLs within News Site: 981799
+# unique URLs outside News Site: 116764
+
+Status Codes:
+=============
+200: 9795
+301: 94
+302: 82
+308: 6
+404: 19
+410: 3
+500: 1
+
+File Sizes:
+===========
+< 1KB: 7
+1KB ~ <10KB: 662
+10KB ~ <100KB: 2225
+100KB ~ <1MB: 6634
+>= 1MB: 101
+
+Content Types:
+==============
+image/jpeg: 1063
+image/png: 62
+image/svg+xml: 7
+image/webp: 254
+image/x-icon: 6
+text/html: 8237
