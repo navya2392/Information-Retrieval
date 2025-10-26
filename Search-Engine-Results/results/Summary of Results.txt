@@ -1,12 +1,11 @@
 CSCI 572 Homework 1 - Yahoo vs Google Search Engine Comparison Analysis
 
-After testing 100 search queries using the re-ranking method, the results show an average percent overlap of 11.8% and an average Spearman coefficient of 0.19 across all queries. This means Yahoo and Google have low correlation in their search results and operate quite independently from each other.
+The results show an average percent overlap of 11.8% and an average Spearman coefficient of 0.19 across all queries. This means Yahoo and Google have low correlation in their search results. Users looking for comprehensive coverage of a topic would benefit from searching both engines since they typically return different result sets. 
 
 The data shows that Yahoo and Google return very different results. Only 11.8% of their results overlap on average - meaning out of 10 results, fewer than 1.2 are shared between the two search engines. This indicates that Yahoo and Google are retrieving different websites for the same searches, likely due to different algorithms and indexing methods.
 
-The Spearman coefficient of 0.19 across all queries represents a very weak positive correlation. This means that when Yahoo and Google do return the same websites, they show a slight tendency to rank them in similar orders - when Yahoo ranks a URL higher, Google tends to rank it higher as well. However, the 0.19 value indicates this agreement is quite minimal, suggesting that while there is some consistency in their ranking approaches, it's not strong enough to be practically significant.
+The Spearman coefficient of 0.19 across all queries represents a very weak positive correlation. This means that when Yahoo and Google do return the same websites, they show a slight tendency to rank them in similar orders - however, the 0.19 value indicates this agreement is quite minimal, suggesting that while there is some consistency in their ranking approaches, it's not strong enough. 
 
-In conclusion, Yahoo doesn't perform better or worse than Google - they simply operate differently. With only 11.8% overlap and a 0.19 correlation coefficient, these search engines function as independent systems. Users looking for comprehensive coverage of a topic would benefit from searching both engines since they typically return different result sets.
 
 IMPLEMENTATION NOTES:
 
@@ -14,6 +13,6 @@ IMPLEMENTATION NOTES:
 
 2. Re-ranking Methodology: Spearman correlation re-ranks were calculated based on the updated Piazza post clarification, where only overlapping URLs are re-ranked from 1 to n based on their relative positions within the matched results, rather than using global rankings 1-10.
 
-3. Yahoo Result Adequacy: Since Yahoo sometimes generated fewer than 10 results per page even after adjusting search parameters, we scraped additional pages to ensure at least 10 organic URLs per query for fair comparison with Google's 10 results.
+3. Pagination: Since Yahoo sometimes generated fewer than 10 results per page even after adjusting search parameters, we scraped additional pages to ensure at least 10 organic URLs per query for fair comparison with Google's 10 results.
 
 4. Yahoo URL Processing: All Yahoo search result URLs were redirect links in the HTML (using r.search.yahoo.com). We decoded these redirect URLs to their absolute destination URLs, then used an is_organic function that filtered for organic URLs by excluding all Yahoo-owned domains (yahoo.com, yimg.com, flickr.com, tumblr.com, aol.com, engadget.com, techcrunch.com, uservoice.com), non-HTTP protocols (javascript:, mailto:, tel:, ftp:), and fragment-only URLs, ensuring only external website URLs were considered as organic search results.
