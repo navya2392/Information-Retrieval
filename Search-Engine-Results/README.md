@@ -3,7 +3,6 @@
 ## 📌 Overview
 This Python-based project compares **Google** and **Bing** search results for a set of 100 predefined queries.  
 It analyzes the **ranking overlap**, **Spearman correlation**, and other metrics to measure search engine similarity.
-
 ---
 
 ## ⚙️ Technologies Used
@@ -12,7 +11,6 @@ It analyzes the **ranking overlap**, **Spearman correlation**, and other metrics
 - requests, BeautifulSoup  
 - JSON handling  
 - Excel for result summary visualization
-
 ---
 
 ## 📁 Folder Structure
@@ -55,12 +53,54 @@ Search-Engine-Results/
 ---
 
 ## 📈 Outputs
-- **Google vs Bing Overlap**  
-- **Spearman Correlation** between rankings  
-- **Top-10 Precision & Recall**  
-- **Query-wise Analysis Table**
+- **Average overlap:** 11.8% — fewer than 1.2 common results per query.  
+- **Average Spearman ρ:** 0.19 — a weak positive correlation, indicating limited ranking similarity.  
+ - Yahoo and Google return largely **independent** result sets, meaning users gain broader coverage by searching both engines.
 
+## 🔄 Process Used
+
+1. **Query Selection**  
+   - 100 predefined search queries were used to ensure a consistent comparison across both Yahoo and Google.  
+   - Queries covered diverse topics to avoid domain bias.
+
+2. **Data Collection**  
+   - For each query, the top-10 search results were fetched from **Yahoo** and **Google**.  
+   - Yahoo results were retrieved from `r.search.yahoo.com`, which required decoding redirect links to extract the true destination URLs.  
+   - When Yahoo returned fewer than 10 results, additional pages were scraped to ensure parity with Google’s 10 results.
+
+3. **Data Cleaning**  
+   - Redirect URLs were decoded to absolute URLs.  
+   - Non-organic results were filtered out — e.g., links to Yahoo-owned domains (`yahoo.com`, `flickr.com`, `tumblr.com`, `engadget.com`, etc.) and non-HTTP protocols (`mailto:`, `javascript:`, `tel:`, etc.).  
+   - URLs differing only in case were treated as **distinct** (case-sensitive comparison).  
+   - Fragment-only and invalid URLs were excluded to maintain uniformity.
+
+4. **Analysis**  
+   - Computed the **percentage overlap** (shared URLs between engines).  
+   - Computed **Spearman’s rank correlation coefficient (ρ)** to assess ranking similarity.  
+   - Aggregated results into per-query and average statistics.
+
+5. **Result Generation**  
+   - Outputs were stored as `results.csv` and `results_summary.json`.  
+   - A text summary (`Summary of Results.txt`) consolidates final findings.
 ---
+### 📈 Spearman Rank Correlation Calculation
+
+To measure how similarly Yahoo and Google ranked the overlapping URLs, the **Spearman’s rank correlation coefficient (ρ)** was used.
+
+For each query:
+1. Only URLs common to both Yahoo and Google top-10 lists were considered.  
+2. Each shared URL was assigned a rank in both engines (1–10).  
+3. The difference in ranks (`d`) was calculated for each URL.  
+4. ρ was computed using the formula:
+
+   \[
+   \rho = 1 - \frac{6 \sum d^2}{n(n^2 - 1)}
+   \]
+
+   where *n* = number of overlapping URLs.  
+5. ρ values range from **+1 (identical order)** to **–1 (inverse order)**.  
+
+In this project, the **average ρ = 0.19**, indicating a weak positive correlation — meaning Yahoo and Google tend to rank even common results quite differently.
 
 ## 🧩 Notes
 - Uses publicly available search result APIs.  
